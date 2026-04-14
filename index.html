@@ -23,45 +23,78 @@
     <div class="page-shell">
       <header class="hero fade-up">
         <div class="hero-copy">
-          <div class="eyebrow">Introduction to AI • Character-level language models</div>
+          <div class="toolbar-grid">
+            <div class="control-cluster">
+              <span class="control-label" id="language-label">Interface language</span>
+              <div class="segmented" id="language-row">
+                <button type="button" class="segmented-button active" data-language="en">
+                  English
+                </button>
+                <button type="button" class="segmented-button" data-language="pt-BR">
+                  Português (Brasil)
+                </button>
+              </div>
+            </div>
+            <div class="control-cluster">
+              <span class="control-label" id="mode-label">Corpus type</span>
+              <div class="segmented" id="mode-row">
+                <button type="button" class="segmented-button active" data-mode="text">
+                  Text
+                </button>
+                <button type="button" class="segmented-button" data-mode="names">
+                  Names
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="eyebrow" id="hero-eyebrow">
+            Introduction to AI • Character-level language models
+          </div>
           <h1>Bigram Studio</h1>
-          <p class="hero-text">
+          <p class="hero-text" id="hero-text">
             Watch a tiny language model learn from text one neighboring character
             at a time. Paste a corpus, inspect the probability of the next
             character, and sample new text from the learned bigram model.
           </p>
           <div class="hero-callouts">
             <div class="callout-card">
-              <span class="callout-label">Step 1</span>
-              <strong>Count character pairs</strong>
-              <p>We slide through the text and record every current → next transition.</p>
+              <span class="callout-label" id="step-1-label">Step 1</span>
+              <strong id="step-1-title">Count character pairs</strong>
+              <p id="step-1-body">
+                We slide through the text and record every current → next transition.
+              </p>
             </div>
             <div class="callout-card">
-              <span class="callout-label">Step 2</span>
-              <strong>Turn counts into probabilities</strong>
-              <p>Each row becomes a distribution over what tends to come next.</p>
+              <span class="callout-label" id="step-2-label">Step 2</span>
+              <strong id="step-2-title">Turn counts into probabilities</strong>
+              <p id="step-2-body">
+                Each row becomes a distribution over what tends to come next.
+              </p>
             </div>
             <div class="callout-card">
-              <span class="callout-label">Step 3</span>
-              <strong>Sample from the model</strong>
-              <p>Generation works by repeatedly drawing the next character.</p>
+              <span class="callout-label" id="step-3-label">Step 3</span>
+              <strong id="step-3-title">Sample from the model</strong>
+              <p id="step-3-body">
+                Generation works by repeatedly drawing the next character.
+              </p>
             </div>
           </div>
         </div>
         <aside class="hero-aside">
           <div class="mini-panel">
-            <div class="mini-panel-title">The core idea</div>
+            <div class="mini-panel-title" id="core-idea-title">The core idea</div>
             <code class="formula">
               P(next = x | current = c) = count(c, x) / sum count(c, *)
             </code>
           </div>
           <div class="mini-panel">
-            <div class="mini-panel-title">What you can do here</div>
+            <div class="mini-panel-title" id="what-you-can-do-title">What you can do here</div>
             <ul class="mini-list">
-              <li>Swap training text instantly</li>
-              <li>See the full bigram heatmap</li>
-              <li>Probe one character at a time</li>
-              <li>Generate brand-new text samples</li>
+              <li id="feature-1">Swap training text instantly</li>
+              <li id="feature-2">See the full bigram heatmap</li>
+              <li id="feature-3">Probe one character at a time</li>
+              <li id="feature-4">Turn a class list of names into a name generator</li>
             </ul>
           </div>
         </aside>
@@ -71,32 +104,37 @@
         <section class="panel control-panel fade-up">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Train The Model</p>
-              <h2>Paste any text and watch the bigram model update</h2>
+              <p class="panel-kicker" id="train-kicker">Train The Model</p>
+              <h2 id="train-heading">Paste any text and watch the bigram model update</h2>
             </div>
           </div>
 
+          <p class="mode-hint" id="mode-hint">
+            In text mode, paste a paragraph and the model will learn character-to-character transitions.
+          </p>
+
           <div class="preset-row" id="preset-row">
-            <button class="preset-button active" data-sample="lesson">AI Lesson</button>
-            <button class="preset-button" data-sample="rain">Rain Poem</button>
-            <button class="preset-button" data-sample="robots">Robot Story</button>
+            <button type="button" class="preset-button active" data-sample="lesson">AI Lesson</button>
+            <button type="button" class="preset-button" data-sample="rain">Rain Poem</button>
+            <button type="button" class="preset-button" data-sample="robots">Robot Story</button>
+            <button type="button" class="preset-button" data-sample="names">Name List</button>
           </div>
 
           <div class="options-grid">
             <label class="toggle-card">
               <input type="checkbox" id="lowercase-toggle" checked />
-              <span>Lowercase text</span>
+              <span id="lowercase-label">Lowercase text</span>
             </label>
             <label class="toggle-card">
               <input type="checkbox" id="spaces-toggle" checked />
-              <span>Keep spaces</span>
+              <span id="spaces-label">Keep spaces</span>
             </label>
             <label class="toggle-card">
               <input type="checkbox" id="punctuation-toggle" checked />
-              <span>Keep punctuation</span>
+              <span id="punctuation-label">Keep punctuation</span>
             </label>
             <label class="select-card">
-              <span>Order symbols</span>
+              <span id="sort-label">Order symbols</span>
               <select id="sort-select">
                 <option value="frequency">By frequency</option>
                 <option value="alphabetical">Alphabetically</option>
@@ -104,7 +142,7 @@
             </label>
           </div>
 
-          <label class="field-label" for="training-input">Training text</label>
+          <label class="field-label" id="training-label" for="training-input">Training text</label>
           <textarea
             id="training-input"
             spellcheck="false"
@@ -113,11 +151,11 @@
 
           <div class="preview-grid">
             <div class="preview-card">
-              <div class="preview-title">Normalized preview</div>
+              <div class="preview-title" id="preview-normalized-title">Normalized preview</div>
               <p id="normalized-preview" class="preview-text"></p>
             </div>
             <div class="preview-card">
-              <div class="preview-title">First extracted bigrams</div>
+              <div class="preview-title" id="preview-pairs-title">First extracted bigrams</div>
               <div id="pair-strip" class="pair-strip"></div>
             </div>
           </div>
@@ -126,37 +164,37 @@
         <section class="panel stats-panel fade-up">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Model Snapshot</p>
-              <h2>What the corpus becomes after training</h2>
+              <p class="panel-kicker" id="snapshot-kicker">Model Snapshot</p>
+              <h2 id="snapshot-heading">What the corpus becomes after training</h2>
             </div>
           </div>
 
           <div class="stat-grid">
             <article class="stat-card">
-              <span class="stat-label">Characters</span>
-              <strong id="stat-characters">0</strong>
+              <span class="stat-label" id="stat-label-primary">Characters</span>
+              <strong id="stat-primary">0</strong>
             </article>
             <article class="stat-card">
-              <span class="stat-label">Unique symbols</span>
+              <span class="stat-label" id="stat-label-symbols">Unique symbols</span>
               <strong id="stat-symbols">0</strong>
             </article>
             <article class="stat-card">
-              <span class="stat-label">Observed bigrams</span>
+              <span class="stat-label" id="stat-label-bigrams">Observed bigrams</span>
               <strong id="stat-bigrams">0</strong>
             </article>
             <article class="stat-card">
-              <span class="stat-label">Average branching</span>
+              <span class="stat-label" id="stat-label-branching">Average branching</span>
               <strong id="stat-branching">0</strong>
             </article>
           </div>
 
           <div class="teaching-grid">
             <div class="insight-card">
-              <div class="preview-title">Most common transitions</div>
+              <div class="preview-title" id="top-bigrams-title">Most common transitions</div>
               <div id="top-bigrams" class="chip-cloud"></div>
             </div>
             <div class="insight-card">
-              <div class="preview-title">Why this matters</div>
+              <div class="preview-title" id="why-it-matters-title">Why this matters</div>
               <p id="teaching-note" class="teaching-note"></p>
             </div>
           </div>
@@ -165,8 +203,10 @@
         <section class="panel heatmap-panel fade-up">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Bigram Heatmap</p>
-              <h2>Rows are current characters, columns are next characters</h2>
+              <p class="panel-kicker" id="heatmap-kicker">Bigram Heatmap</p>
+              <h2 id="heatmap-heading">
+                Rows are current characters, columns are next characters
+              </h2>
             </div>
             <div id="selected-char-badge" class="selected-char-badge">Selected: ␠</div>
           </div>
@@ -176,17 +216,19 @@
           </div>
 
           <div class="legend-row">
-            <span>Low probability</span>
+            <span id="legend-low">Low probability</span>
             <div class="legend-gradient"></div>
-            <span>High probability</span>
+            <span id="legend-high">High probability</span>
           </div>
         </section>
 
         <section class="panel focus-panel fade-up">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Local Neighborhood</p>
-              <h2>Probe one symbol and inspect what tends to follow it</h2>
+              <p class="panel-kicker" id="focus-kicker">Local Neighborhood</p>
+              <h2 id="focus-heading">
+                Probe one symbol and inspect what tends to follow it
+              </h2>
             </div>
           </div>
 
@@ -204,24 +246,30 @@
         <section class="panel generator-panel fade-up">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Generate Text</p>
-              <h2>Sample from the learned bigram model</h2>
+              <p class="panel-kicker" id="generate-kicker">Generate Output</p>
+              <h2 id="generate-heading">Sample from the learned bigram model</h2>
             </div>
           </div>
 
           <div class="generator-grid">
             <label class="generator-field">
-              <span>Seed text</span>
+              <span id="seed-label">Seed text</span>
               <input type="text" id="seed-input" value="a" />
             </label>
 
             <label class="generator-field">
-              <span>Length: <strong id="length-value">140</strong></span>
-              <input type="range" id="length-input" min="20" max="320" value="140" />
+              <span>
+                <span id="length-label-prefix">Length</span>:
+                <strong id="length-value">140</strong>
+              </span>
+              <input type="range" id="length-input" min="4" max="320" value="140" />
             </label>
 
             <label class="generator-field">
-              <span>Temperature: <strong id="temperature-value">1.00</strong></span>
+              <span>
+                <span id="temperature-label-prefix">Temperature</span>:
+                <strong id="temperature-value">1.00</strong>
+              </span>
               <input
                 type="range"
                 id="temperature-input"
@@ -233,8 +281,12 @@
             </label>
 
             <div class="generator-actions">
-              <button id="generate-button" class="primary-button">Generate sample</button>
-              <button id="copy-button" class="secondary-button">Copy text</button>
+              <button type="button" id="generate-button" class="primary-button">
+                Generate sample
+              </button>
+              <button type="button" id="copy-button" class="secondary-button">
+                Copy output
+              </button>
             </div>
           </div>
 

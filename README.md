@@ -5,10 +5,12 @@ Bigram Studio is a static, interactive teaching demo for explaining how a simple
 It lets you:
 
 - paste any training corpus
+- switch the interface between English and Brazilian Portuguese
 - normalize the text by toggling lowercase, spaces, and punctuation
 - inspect a full next-character heatmap
 - probe one current character at a time
 - generate new text by sampling from the learned probabilities
+- switch to a name-list mode that learns from names and invents new ones
 
 ## Run locally
 
